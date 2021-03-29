@@ -150,7 +150,7 @@ resource "aws_lb_listener" "agents_80" {
 resource "aws_lb_listener" "agents_443" {
   load_balancer_arn = aws_lb.agents.arn
 
-  protocol = "HTTPS"
+  protocol = "TLS"
   port     = 443
 
   certificate_arn = aws_acm_certificate.agents.arn

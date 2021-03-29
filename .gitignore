@@ -9,3 +9,4 @@ tf/ssh/*
 plan.out
 creds/credentials
 output.json
+scratch
