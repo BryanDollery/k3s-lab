@@ -16,7 +16,7 @@ debug:
 		   --name "$$(basename $$PWD)_debug" \
 		   -w /$$(basename $$PWD) \
 		   -u $$(id -u):$$(id -g) \
-		   bryandollery/terraform-packer-aws-alpine:14
+		   bryandollery/terraform-packer-aws-alpine:15
 
 ver:
 	docker container run -it --rm \
@@ -30,7 +30,7 @@ ver:
 		   -w /$$(basename $$PWD) \
 		   -u $$(id -u):$$(id -g) \
 		   --entrypoint terraform \
-		   bryandollery/terraform-packer-aws-alpine:14 -version
+		   bryandollery/terraform-packer-aws-alpine:15 -version
 
 fmt:
 	time -p docker container run -it --rm \
@@ -44,7 +44,7 @@ fmt:
 		   -w /$$(basename $$PWD) \
 		   -u $$(id -u):$$(id -g) \
 		   --entrypoint terraform \
-		   bryandollery/terraform-packer-aws-alpine:14 fmt -recursive
+		   bryandollery/terraform-packer-aws-alpine:15 fmt -recursive
 validate:
 	time -p docker container run -it --rm \
 		   --env TF_NAMESPACE=$$TF_NAMESPACE \
@@ -57,7 +57,7 @@ validate:
 		   -w /$$(basename $$PWD) \
 		   -u $$(id -u):$$(id -g) \
 		   --entrypoint terraform \
-		   bryandollery/terraform-packer-aws-alpine:14 validate
+		   bryandollery/terraform-packer-aws-alpine:15 validate
 
 plan: clean
 	time -p docker container run -it --rm \
@@ -71,7 +71,7 @@ plan: clean
 		   -w /$$(basename $$PWD) \
 		   -u $$(id -u):$$(id -g) \
 		   --entrypoint terraform \
-		   bryandollery/terraform-packer-aws-alpine:14 plan -out plan.out
+		   bryandollery/terraform-packer-aws-alpine:15 plan -out plan.out
 
 apply: _apply output.json
 
@@ -87,7 +87,7 @@ _apply:
 		   -w /$$(basename $$PWD) \
 		   -u $$(id -u):$$(id -g) \
 		   --entrypoint terraform \
-		   bryandollery/terraform-packer-aws-alpine:14 apply plan.out
+		   bryandollery/terraform-packer-aws-alpine:15 apply plan.out
 
 down:
 	time -p docker container run -it --rm \
@@ -101,7 +101,7 @@ down:
 		   -w /$$(basename $$PWD) \
 		   -u $$(id -u):$$(id -g) \
 		   --entrypoint terraform \
-		   bryandollery/terraform-packer-aws-alpine:14 destroy -auto-approve
+		   bryandollery/terraform-packer-aws-alpine:15 destroy -auto-approve
 	rm -f output.json
 	rm -f plan.out
 
@@ -119,7 +119,7 @@ output.json:
 		   -w /$$(basename $$PWD) \
 		   -u $$(id -u):$$(id -g) \
 		   --entrypoint terraform \
-		   bryandollery/terraform-packer-aws-alpine:14 output -json > output.json
+		   bryandollery/terraform-packer-aws-alpine:15 output -json > output.json
 
 clean:
 	rm -f output.json
@@ -152,5 +152,5 @@ init: clean
 		   -w /$$(basename $$PWD) \
 		   -u $$(id -u):$$(id -g) \
 		   --entrypoint terraform \
-		   bryandollery/terraform-packer-aws-alpine:14 init
+		   bryandollery/terraform-packer-aws-alpine:15 init
 
